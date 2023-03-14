@@ -1,21 +1,23 @@
 package br.com.fiap.marys_pizza.models;
 
+import java.time.LocalDate;
+
 public class Cliente {
 
-    private int id_cliente;
+    private int idCliente;
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
     private String senha;
     private String usuario;
-    private String data_nascimento;
-    
-    public int getId_cliente() {
-        return id_cliente;
+    private LocalDate dataNascimento;
+
+    public int getIdCliente() {
+        return idCliente;
     }
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
     public String getNome() {
         return nome;
@@ -53,30 +55,30 @@ public class Cliente {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    public String getData_nascimento() {
-        return data_nascimento;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
-    public void setData_nascimento(String data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
-    
-    public Cliente(int id_cliente, String nome, String cpf, String email, String telefone, String senha, String usuario,
-            String data_nascimento) {
-        this.id_cliente = id_cliente;
+
+    public Cliente(int idCliente, String nome, String cpf, String email, String telefone, String senha, String usuario,
+            LocalDate dataNascimento) {
+        this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
         this.usuario = usuario;
-        this.data_nascimento = data_nascimento;
+        this.dataNascimento = dataNascimento;
     }
 
     @Override
     public String toString() {
-        return "Cliente [id_cliente=" + id_cliente + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email
-                + ", telefone=" + telefone + ", senha=" + senha + ", usuario=" + usuario + ", data_nascimento="
-                + data_nascimento + "]";
+        return "Cliente [idCliente=" + idCliente + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email
+                + ", telefone=" + telefone + ", senha=" + senha + ", usuario=" + usuario + ", dataNascimento="
+                + dataNascimento + "]";
     }
-    
+       
 }

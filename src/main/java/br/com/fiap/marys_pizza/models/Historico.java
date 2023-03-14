@@ -1,23 +1,18 @@
 package br.com.fiap.marys_pizza.models;
 
 public class Historico {
-
-    private int id_pedido;
-    private String tipo_pagamento;
+    
+    private int idPedido;
     private String avaliacao;
-    private double valor_total;
+    private double valorTotal;
+    
+    public enum tipoPagamento {Credito, Débito, Dinheiro, Ticket}
 
-    public int getId_pedido() {
-        return id_pedido;
+    public int getIdPedido() {
+        return idPedido;
     }
-    public void setId_pedido(int id_pedido) {
-        this.id_pedido = id_pedido;
-    }
-    public String getTipo_pagamento() {
-        return tipo_pagamento;
-    }
-    public void setTipo_pagamento(String tipo_pagamento) {
-        this.tipo_pagamento = tipo_pagamento;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
     public String getAvaliacao() {
         return avaliacao;
@@ -25,24 +20,22 @@ public class Historico {
     public void setAvaliacao(String avaliacao) {
         this.avaliacao = avaliacao;
     }
-    public double getValor_total() {
-        return valor_total;
+    public double getValorTotal() {
+        return valorTotal;
     }
-    public void setValor_total(double valor_total) {
-        this.valor_total = valor_total;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public Historico(int id_pedido, String tipo_pagamento, String avaliacao, double valor_total) {
-        this.id_pedido = id_pedido;
-        this.tipo_pagamento = tipo_pagamento;
+    public Historico(int idPedido, String avaliacao, double valorTotal) {
+        this.idPedido = idPedido;
         this.avaliacao = avaliacao;
-        this.valor_total = valor_total;
+        this.valorTotal = valorTotal;
     }
 
     @Override
     public String toString() {
-        return "Historico [id_pedido=" + id_pedido + ", tipo_pagamento=" + tipo_pagamento + ", avaliacao=" + avaliacao
-                + ", valor_total=" + valor_total + "]";
+        return "Historico [idPedido=" + idPedido + ", avaliacao=" + avaliacao + ", valorTotal=" + valorTotal + "]";
     }
-    
+   
 }

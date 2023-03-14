@@ -2,8 +2,7 @@ package br.com.fiap.marys_pizza.models;
 
 public class EnderecoCliente {
 
-    private int id_endereco;
-    private int id_cliente;
+    private int idEndereco;
     private String titulo;
     private String logradouro;
     private String numero;
@@ -12,17 +11,11 @@ public class EnderecoCliente {
     private String cidade;
     private String referencia;
     
-    public int getId_endereco() {
-        return id_endereco;
+    public int getIdEndereco() {
+        return idEndereco;
     }
-    public void setId_endereco(int id_endereco) {
-        this.id_endereco = id_endereco;
-    }
-    public int getId_cliente() {
-        return id_cliente;
-    }
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
     public String getTitulo() {
         return titulo;
@@ -67,10 +60,9 @@ public class EnderecoCliente {
         this.referencia = referencia;
     }
 
-    public EnderecoCliente(int id_endereco, int id_cliente, String titulo, String logradouro, String numero,
-            String bairro, String cep, String cidade, String referencia) {
-        this.id_endereco = id_endereco;
-        this.id_cliente = id_cliente;
+    public EnderecoCliente(int idEndereco, String titulo, String logradouro, String numero, String bairro, String cep,
+            String cidade, String referencia) {
+        this.idEndereco = idEndereco;
         this.titulo = titulo;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -82,9 +74,9 @@ public class EnderecoCliente {
 
     @Override
     public String toString() {
-        return "EnderecoCliente [id_endereco=" + id_endereco + ", id_cliente=" + id_cliente + ", titulo=" + titulo
-                + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep
-                + ", cidade=" + cidade + ", referencia=" + referencia + "]";
+        return "EnderecoCliente [idEndereco=" + idEndereco + ", titulo=" + titulo + ", logradouro=" + logradouro
+                + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", referencia="
+                + referencia + "]";
     }
-    
+
 }

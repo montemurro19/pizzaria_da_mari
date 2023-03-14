@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 public class Item {
 
-    private int id_item;
+    private Long idItem;
     private String titulo;
     private String descricao;
     private BigDecimal preco;
     private String tipo;
-    
-    public int getId_item() {
-        return id_item;
+
+    public Long getIdItem() {
+        return idItem;
     }
-    public void setId_item(int id_item) {
-        this.id_item = id_item;
+    public void setIdItem(Long idItem) {
+        this.idItem = idItem;
     }
     public String getTitulo() {
         return titulo;
@@ -41,8 +41,7 @@ public class Item {
         this.tipo = tipo;
     }
 
-    public Item(int id_item, String titulo, String descricao, BigDecimal preco, String tipo) {
-        this.id_item = id_item;
+    public Item(String titulo, String descricao, BigDecimal preco, String tipo) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.preco = preco;
@@ -51,8 +50,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item [id_item=" + id_item + ", titulo=" + titulo + ", descricao=" + descricao + ", preco=" + preco
+        return "Item [titulo=" + titulo + ", descricao=" + descricao + ", preco=" + preco
                 + ", tipo=" + tipo + "]";
-    } 
+    }
     
 }

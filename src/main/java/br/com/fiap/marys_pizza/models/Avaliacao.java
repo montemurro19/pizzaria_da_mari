@@ -2,22 +2,15 @@ package br.com.fiap.marys_pizza.models;
 
 public class Avaliacao {
 
-    private int id_avaliacao;
-    private int id_cliente;
+    private int idAvaliacao;
     private String comentario;
     private int nota;
-    
-    public int getId_avaliacao() {
-        return id_avaliacao;
+
+    public int getIdAvaliacao() {
+        return idAvaliacao;
     }
-    public void setId_avaliacao(int id_avaliacao) {
-        this.id_avaliacao = id_avaliacao;
-    }
-    public int getId_cliente() {
-        return id_cliente;
-    }
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdAvaliacao(int idAvaliacao) {
+        this.idAvaliacao = idAvaliacao;
     }
     public String getComentario() {
         return comentario;
@@ -32,16 +25,15 @@ public class Avaliacao {
         this.nota = nota;
     }
     
-    public Avaliacao(int id_avaliacao, int id_cliente, String comentario, int nota) {
-        this.id_avaliacao = id_avaliacao;
-        this.id_cliente = id_cliente;
+    public Avaliacao(int idAvaliacao, String comentario, int nota) {
+        this.idAvaliacao = idAvaliacao;
         this.comentario = comentario;
         this.nota = nota;
     }
+
     @Override
     public String toString() {
-        return "Avaliacao [id_avaliacao=" + id_avaliacao + ", id_cliente=" + id_cliente + ", comentario=" + comentario
-                + ", nota=" + nota + "]";
+        return "Avaliacao [idAvaliacao=" + idAvaliacao + ", comentario=" + comentario + ", nota=" + nota + "]";
     }
- 
+    
 }
