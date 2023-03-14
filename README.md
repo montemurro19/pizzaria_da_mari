@@ -71,7 +71,7 @@
     "Preco":80
 
 }
-
+```
 ### Deletar Produto 👇
 
 | campo | tipo | obrigatório | descrição
@@ -83,12 +83,12 @@
 ### Corpo de requisição
 ```js
 {
-    "Produto":
-    "Descricao": 
-    "Preco":
+    "Produto":,
+    "Descricao":,
+    "Preco":,
 
 }
-
+```
 ### Alterar Produto 👇
 
 | campo | tipo | obrigatório | descrição
@@ -96,11 +96,12 @@
 |Produto| texto | sim | nome do produto
 |Descricao| texto | sim | descrição do produto
 |Preço  | texto | sim | preço do produto
+
 ### Corpo de requisição
 ```js
 {
     "Produto":Pizza de Musssarela,
-    "Descricao": pizza mussarela, *sem tomate*, cebola,
+    "Descricao":pizza mussarela, *sem tomate*, cebola,
     "Preco":80
 
 }
