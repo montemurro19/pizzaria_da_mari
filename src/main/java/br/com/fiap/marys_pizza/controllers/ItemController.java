@@ -50,7 +50,7 @@ public class ItemController {
 
     @DeleteMapping("/api/item/{idItem}")
     public ResponseEntity<Item> destroy(@PathVariable Long idItem){
-        log.info("buscar item com id" + idItem);
+        log.info("apagar item com id" + idItem);
         var itemEncontrado = itens
                                 .stream()
                                 .filter((i) -> {return i.getIdItem().equals(idItem);})
@@ -61,9 +61,9 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/api/item/{id}")
+    @PutMapping("/api/item/{idItem}")
     public ResponseEntity<Item> update(@PathVariable Long idItem, @RequestBody Item item){
-        log.info("apagar item com id" + idItem);
+        log.info("atualizar item com id" + idItem);
         var itemEncontrado = itens
                                 .stream()
                                 .filter((i) -> {return i.getIdItem().equals(idItem);})

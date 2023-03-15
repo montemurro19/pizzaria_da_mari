@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Cliente {
 
-    private int idCliente;
+    private Long idCliente;
     private String nome;
     private String cpf;
     private String email;
@@ -13,10 +13,10 @@ public class Cliente {
     private String usuario;
     private LocalDate dataNascimento;
 
-    public int getIdCliente() {
+    public Long getIdCliente() {
         return idCliente;
     }
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
     }
     public String getNome() {
@@ -62,9 +62,8 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
-    public Cliente(int idCliente, String nome, String cpf, String email, String telefone, String senha, String usuario,
+    public Cliente(String nome, String cpf, String email, String telefone, String senha, String usuario,
             LocalDate dataNascimento) {
-        this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -76,7 +75,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [idCliente=" + idCliente + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email
+        return "Cliente [nome=" + nome + ", cpf=" + cpf + ", email=" + email
                 + ", telefone=" + telefone + ", senha=" + senha + ", usuario=" + usuario + ", dataNascimento="
                 + dataNascimento + "]";
     }

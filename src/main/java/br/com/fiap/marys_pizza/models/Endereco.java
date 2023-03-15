@@ -1,8 +1,8 @@
 package br.com.fiap.marys_pizza.models;
 
-public class EnderecoCliente {
+public class Endereco {
 
-    private int idEndereco;
+    private Long idEndereco;
     private String titulo;
     private String logradouro;
     private String numero;
@@ -11,10 +11,10 @@ public class EnderecoCliente {
     private String cidade;
     private String referencia;
     
-    public int getIdEndereco() {
+    public Long getIdEndereco() {
         return idEndereco;
     }
-    public void setIdEndereco(int idEndereco) {
+    public void setIdEndereco(Long idEndereco) {
         this.idEndereco = idEndereco;
     }
     public String getTitulo() {
@@ -60,9 +60,8 @@ public class EnderecoCliente {
         this.referencia = referencia;
     }
 
-    public EnderecoCliente(int idEndereco, String titulo, String logradouro, String numero, String bairro, String cep,
+    public Endereco(String titulo, String logradouro, String numero, String bairro, String cep,
             String cidade, String referencia) {
-        this.idEndereco = idEndereco;
         this.titulo = titulo;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -74,7 +73,7 @@ public class EnderecoCliente {
 
     @Override
     public String toString() {
-        return "EnderecoCliente [idEndereco=" + idEndereco + ", titulo=" + titulo + ", logradouro=" + logradouro
+        return "EnderecoCliente [titulo=" + titulo + ", logradouro=" + logradouro
                 + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", referencia="
                 + referencia + "]";
     }
