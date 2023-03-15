@@ -12,7 +12,8 @@
     
     -Dashbord
         -Adicionar Produto
-
+        -Deletar Produto
+        -Alterar Produto
 
 ### Cadastrar cliente 👇
 
@@ -67,6 +68,40 @@
 {
     "Produto": Pizza de Musssarela,
     "Descricao": pizza mussarela, com tomate, cebola,
+    "Preco":80
+
+}
+```
+### Deletar Produto 👇
+
+| campo | tipo | obrigatório | descrição
+|-------|------|:-----------:|------
+|Produto| texto | sim | nome do produto
+|Descricao| texto | sim | descrição do produto
+|Preço  | texto | sim | preço do produto
+
+### Corpo de requisição
+```js
+{
+    "Produto":,
+    "Descricao":,
+    "Preco":,
+
+}
+```
+### Alterar Produto 👇
+
+| campo | tipo | obrigatório | descrição
+|-------|------|:-----------:|------
+|Produto| texto | sim | nome do produto
+|Descricao| texto | sim | descrição do produto
+|Preço  | texto | sim | preço do produto
+
+### Corpo de requisição
+```js
+{
+    "Produto":Pizza de Musssarela,
+    "Descricao":pizza mussarela, *sem tomate*, cebola,
     "Preco":80
 
 }
