@@ -2,14 +2,14 @@ package br.com.fiap.marys_pizza.models;
 
 public class Avaliacao {
 
-    private int idAvaliacao;
+    private Long idAvaliacao;
     private String comentario;
     private int nota;
 
-    public int getIdAvaliacao() {
+    public Long getIdAvaliacao() {
         return idAvaliacao;
     }
-    public void setIdAvaliacao(int idAvaliacao) {
+    public void setIdAvaliacao(Long idAvaliacao) {
         this.idAvaliacao = idAvaliacao;
     }
     public String getComentario() {
@@ -25,15 +25,14 @@ public class Avaliacao {
         this.nota = nota;
     }
     
-    public Avaliacao(int idAvaliacao, String comentario, int nota) {
-        this.idAvaliacao = idAvaliacao;
+    public Avaliacao(String comentario, int nota) {
         this.comentario = comentario;
         this.nota = nota;
     }
 
     @Override
     public String toString() {
-        return "Avaliacao [idAvaliacao=" + idAvaliacao + ", comentario=" + comentario + ", nota=" + nota + "]";
+        return "Avaliacao [comentario=" + comentario + ", nota=" + nota + "]";
     }
     
 }

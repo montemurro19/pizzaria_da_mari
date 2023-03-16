@@ -12,20 +12,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.marys_pizza.models.Pagamento;
-import br.com.fiap.marys_pizza.models.Endereco;
 import br.com.fiap.marys_pizza.models.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class PessoaController {
+public class ClienteController {
 
-    Logger log =  LoggerFactory.getLogger(PessoaController.class);
+    Logger log =  LoggerFactory.getLogger(ClienteController.class);
 
     List<Cliente> clientes = new ArrayList<>();
-    List<Endereco> enderecos = new ArrayList<>();
-    List<Pagamento> pagamentos = new ArrayList<>();
 
     @GetMapping("/api/cliente")
     public List<Cliente> Index() {
@@ -79,5 +75,5 @@ public class PessoaController {
         clientes.add(cliente);
         return ResponseEntity.ok(cliente);
     }
- 
+
 }
