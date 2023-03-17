@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 public class Pedido {
     
     private Long idPedido;
-    private  LocalDateTime horarioPedido;
+    private LocalDateTime horarioPedido;
     private BigDecimal valorTotal;
     private String observacao;
+    private String status;
     
-    public enum status{}
-
     public Long getIdPedido() {
         return idPedido;
     }
@@ -36,19 +35,24 @@ public class Pedido {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public Pedido(LocalDateTime horarioPedido, BigDecimal valorTotal, String observacao) {
+    public Pedido(LocalDateTime horarioPedido, BigDecimal valorTotal, String observacao, String status) {
         this.horarioPedido = horarioPedido;
         this.valorTotal = valorTotal;
         this.observacao = observacao;
+        this.status = status;
     }
-
+    
     @Override
     public String toString() {
-        return "Pedido [horarioPedido=" + horarioPedido + ", valorTotal=" + valorTotal
-                + ", observacao=" + observacao + "]";
+        return "Pedido [horarioPedido=" + horarioPedido + ", valorTotal=" + valorTotal + ", observacao=" + observacao
+                + ", status=" + status + "]";
     }
     
 }
-
-//falta arrumar essa classe

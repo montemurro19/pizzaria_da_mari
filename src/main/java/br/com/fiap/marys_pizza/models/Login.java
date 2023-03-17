@@ -26,5 +26,6 @@ public class Login {
     @Override
     public String toString() {
         return "Login [usuario=" + usuario + ", senha=" + senha + "]";
-    }     
+    }
+     
 }

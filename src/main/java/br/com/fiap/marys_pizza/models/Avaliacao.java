@@ -4,7 +4,7 @@ public class Avaliacao {
 
     private Long idAvaliacao;
     private String comentario;
-    private int nota;
+    private Long nota;
 
     public Long getIdAvaliacao() {
         return idAvaliacao;
@@ -18,14 +18,14 @@ public class Avaliacao {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-    public int getNota() {
+    public Long getNota() {
         return nota;
     }
-    public void setNota(int nota) {
+    public void setNota(Long nota) {
         this.nota = nota;
     }
     
-    public Avaliacao(String comentario, int nota) {
+    public Avaliacao(String comentario, Long nota) {
         this.comentario = comentario;
         this.nota = nota;
     }

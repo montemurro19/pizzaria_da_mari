@@ -2,17 +2,16 @@ package br.com.fiap.marys_pizza.models;
 
 public class Historico {
     
-    private int idPedido;
+    private Long idHistorico;
     private String avaliacao;
     private double valorTotal;
+    private String tipoPagamento;
     
-    public enum tipoPagamento {Credito, Débito, Dinheiro, Ticket}
-
-    public int getIdPedido() {
-        return idPedido;
+    public Long getIdHistorico() {
+        return idHistorico;
     }
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public void setIdHistorico(Long idHistorico) {
+        this.idHistorico = idHistorico;
     }
     public String getAvaliacao() {
         return avaliacao;
@@ -26,16 +25,23 @@ public class Historico {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-
-    public Historico(int idPedido, String avaliacao, double valorTotal) {
-        this.idPedido = idPedido;
+    public String getTipoPagamento() {
+        return tipoPagamento;
+    }
+    public void setTipoPagamento(String tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+    
+    public Historico(String avaliacao, double valorTotal, String tipoPagamento) {
         this.avaliacao = avaliacao;
         this.valorTotal = valorTotal;
+        this.tipoPagamento = tipoPagamento;
     }
 
     @Override
     public String toString() {
-        return "Historico [idPedido=" + idPedido + ", avaliacao=" + avaliacao + ", valorTotal=" + valorTotal + "]";
+        return "Historico [avaliacao=" + avaliacao + ", valorTotal=" + valorTotal + ", tipoPagamento=" + tipoPagamento
+                + "]";
     }
-   
+
 }
