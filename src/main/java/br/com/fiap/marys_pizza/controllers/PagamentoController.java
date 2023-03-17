@@ -57,9 +57,9 @@ public class PagamentoController {
                                 .filter((p)-> {return p.getIdPagamento().equals(idPagamento);})
                                 .findFirst();
         if (pagamentoEncontrado.isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).biuld();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         pagamentos.remove(pagamentoEncontrado.get());
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).biuld();               
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();               
     }
     @PutMapping("/api/pagamento/{idPagamento}")
     public ResponseEntity<Pagamento> update (@PathVariable Long idPagamento,@RequestBody Pagamento pagamento){
@@ -67,13 +67,13 @@ public class PagamentoController {
         var pagamentoEncontrado = pagamentos
                                     .stream()
                                     .filter((p)->{return p.getIdPagamento().equals(idPagamento);})
-                                    .findFirst()
+                                    .findFirst();
        if (pagamentoEncontrado.isEmpty())
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).biuld();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         pagamentos.remove(pagamentoEncontrado.get());
         pagamento.setIdPagamento(idPagamento);
         pagamentos.add(pagamento);
-        return RespondeEntity.ok(pagamento);                             
+        return ResponseEntity.ok(pagamento);                             
     }
     
 }

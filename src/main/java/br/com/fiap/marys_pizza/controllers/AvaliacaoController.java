@@ -42,7 +42,7 @@ public class AvaliacaoController {
     @PostMapping("/api/avaliacao")
     public ResponseEntity<Avaliacao> create(@RequestBody Avaliacao avaliacao){
         log.info("criar avaliação" + avaliacao);
-        Avaliacao.setIdAvaliacao((long) (avaliacoes.size() + 11));
+        //Avaliacao.setIdAvaliacao((long) (avaliacoes.size() + 11));
         avaliacoes.add(avaliacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(avaliacao);
     }
