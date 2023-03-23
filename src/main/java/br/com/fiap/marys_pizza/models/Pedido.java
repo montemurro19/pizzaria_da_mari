@@ -1,10 +1,16 @@
 package br.com.fiap.marys_pizza.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
 public class Pedido {
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
     private LocalDateTime horarioPedido;
     private BigDecimal valorTotal;
@@ -40,6 +46,9 @@ public class Pedido {
     }
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    protected Pedido(){
     }
 
     public Pedido(LocalDateTime horarioPedido, BigDecimal valorTotal, String observacao, String status) {

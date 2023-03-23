@@ -1,7 +1,14 @@
 package br.com.fiap.marys_pizza.models;
 
-public class Avaliacao {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Avaliacao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAvaliacao;
     private String comentario;
     private Long nota;
@@ -25,6 +32,9 @@ public class Avaliacao {
         this.nota = nota;
     }
     
+    protected Avaliacao() {
+    }
+
     public Avaliacao(String comentario, Long nota) {
         this.comentario = comentario;
         this.nota = nota;

@@ -1,7 +1,14 @@
 package br.com.fiap.marys_pizza.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Historico {
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHistorico;
     private String avaliacao;
     private double valorTotal;
@@ -30,6 +37,9 @@ public class Historico {
     }
     public void setTipoPagamento(String tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    protected Historico(){
     }
     
     public Historico(String avaliacao, double valorTotal, String tipoPagamento) {

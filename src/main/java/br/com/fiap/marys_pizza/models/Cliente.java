@@ -2,8 +2,16 @@ package br.com.fiap.marys_pizza.models;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCliente;
     private String nome;
     private String cpf;
@@ -60,6 +68,9 @@ public class Cliente {
     }
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    protected Cliente(){
     }
 
     public Cliente(String nome, String cpf, String email, String telefone, String senha, String usuario,

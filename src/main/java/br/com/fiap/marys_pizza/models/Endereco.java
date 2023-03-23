@@ -1,7 +1,14 @@
 package br.com.fiap.marys_pizza.models;
 
-public class Endereco {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Endereco {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEndereco;
     private String titulo;
     private String logradouro;
@@ -58,6 +65,9 @@ public class Endereco {
     }
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    protected Endereco(){
     }
 
     public Endereco(String titulo, String logradouro, String numero, String bairro, String cep,

@@ -1,5 +1,8 @@
 package br.com.fiap.marys_pizza.models;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Login {
 
     private String usuario;
@@ -16,6 +19,9 @@ public class Login {
     }
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    protected Login(){
     }
 
     public Login(String usuario, String senha) {

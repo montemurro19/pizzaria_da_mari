@@ -2,6 +2,8 @@ package br.com.fiap.marys_pizza.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,70 +12,67 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.marys_pizza.models.Item;
-import java.util.ArrayList;
+import br.com.fiap.marys_pizza.repositories.ItemRepository;
+
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/item")
 public class ItemController {
 
     Logger log = LoggerFactory.getLogger(ItemController.class);
 
-    List<Item> itens = new ArrayList<>();
+    @Autowired
+    ItemRepository repository;
 
-    @GetMapping("/api/item")
+    @GetMapping
     public List<Item> index(){
-        return itens;
+        return repository.findAll();
     }
     
-    @GetMapping("/api/item/{idItem}")
+    @GetMapping("{idItem}")
     public ResponseEntity<Item> show(@PathVariable Long idItem){
         log.info("buscar item com id" + idItem);
-        var itemEncontrado = itens
-                                .stream()
-                                .filter((i) -> {return i.getIdItem().equals(idItem);})
-                                .findFirst();
-        if (itemEncontrado.isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        var itemEncontrado = repository.findById(idItem);
+        if (itemEncontrado.isEmpty()) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(itemEncontrado.get());
     }
 
-    @PostMapping("/api/item")
+    @PostMapping
     public ResponseEntity<Item> create(@RequestBody Item item){
         log.info("cadastrar item" + item);
-        item.setIdItem((long) (itens.size() + 11));
-        itens.add(item);
+        repository.save(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
 
-    @DeleteMapping("/api/item/{idItem}")
+    @DeleteMapping("{idItem}")
     public ResponseEntity<Item> destroy(@PathVariable Long idItem){
         log.info("apagar item com id" + idItem);
-        var itemEncontrado = itens
-                                .stream()
-                                .filter((i) -> {return i.getIdItem().equals(idItem);})
-                                .findFirst();
-        if (itemEncontrado.isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        itens.remove(itemEncontrado.get());
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        var itemEncontrado = repository.findById(idItem);
+
+        if (itemEncontrado.isEmpty()) return ResponseEntity.notFound().build();
+
+        repository.delete(itemEncontrado.get());
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/api/item/{idItem}")
+    @PutMapping("{idItem}")
     public ResponseEntity<Item> update(@PathVariable Long idItem, @RequestBody Item item){
         log.info("atualizar item com id" + idItem);
-        var itemEncontrado = itens
-                                .stream()
-                                .filter((i) -> {return i.getIdItem().equals(idItem);})
-                                .findFirst();
-        if (itemEncontrado.isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        itens.remove(itemEncontrado.get());
-        item.setIdItem(idItem);
-        itens.add(item);
-        return ResponseEntity.ok(item);
+        var itemEncontrado = repository.findById(idItem);
+
+        if (itemEncontrado.isEmpty()) return ResponseEntity.notFound().build();
+
+        var novoItem = itemEncontrado.get();
+        BeanUtils.copyProperties(item, novoItem, "idItem");
+
+        repository.save(novoItem);
+
+        return ResponseEntity.ok(novoItem);
     }
 
 }    

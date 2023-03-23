@@ -1,9 +1,15 @@
 package br.com.fiap.marys_pizza.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class Pagamento {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPagamento;
     private BigDecimal valor;
     private String tipoPagamento;
@@ -25,6 +31,9 @@ public class Pagamento {
     }
     public void setTipoPagamento(String tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    protected Pagamento(){
     }
 
     public Pagamento(BigDecimal valor, String tipoPagamento) {
