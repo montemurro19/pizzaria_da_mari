@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.marys_pizza.models.Pedido;
 import br.com.fiap.marys_pizza.repositories.PedidoRepository;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pedido> create(@RequestBody Pedido pedido) {
+    public ResponseEntity<Pedido> create(@RequestBody @Valid Pedido pedido, BindingResult result) {
         log.info("criar pedido" + pedido);
         repository.save(pedido);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
@@ -61,7 +63,7 @@ public class PedidoController {
     }
 
     @PutMapping("{idPedido}")
-    public ResponseEntity<Pedido> update(@PathVariable Long idPedido, @RequestBody Pedido pedido) {
+    public ResponseEntity<Pedido> update(@PathVariable Long idPedido, @RequestBody @Valid Pedido pedido, BindingResult result) {
         log.info("atualizar pedido com id" + idPedido);
         var pedidoEncontrado = repository.findById(idPedido);
         if(pedidoEncontrado.isEmpty()) return ResponseEntity.notFound().build();

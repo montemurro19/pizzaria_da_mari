@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.marys_pizza.models.Pagamento;
 import br.com.fiap.marys_pizza.repositories.PagamentoRepository;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pagamento> create(@RequestBody Pagamento pagamento){
+    public ResponseEntity<Pagamento> create(@RequestBody @Valid Pagamento pagamento, BindingResult result){
         log.info("criar pagamento" + pagamento);
         repository.save(pagamento);
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);  
@@ -61,7 +63,7 @@ public class PagamentoController {
     }
 
     @PutMapping("{idPagamento}")
-    public ResponseEntity<Pagamento> update (@PathVariable Long idPagamento,@RequestBody Pagamento pagamento){
+    public ResponseEntity<Pagamento> update (@PathVariable Long idPagamento,@RequestBody @Valid Pagamento pagamento, BindingResult result){
         log.info("atualizar pagamento com id" + idPagamento);
         var pagamentoEncontrado = repository.findById(idPagamento);
 

@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.marys_pizza.models.Item;
 import br.com.fiap.marys_pizza.repositories.ItemRepository;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Item> create(@RequestBody Item item){
+    public ResponseEntity<Item> create(@RequestBody @Valid Item item, BindingResult result){
         log.info("cadastrar item" + item);
         repository.save(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
@@ -61,7 +63,7 @@ public class ItemController {
     }
 
     @PutMapping("{idItem}")
-    public ResponseEntity<Item> update(@PathVariable Long idItem, @RequestBody Item item){
+    public ResponseEntity<Item> update(@PathVariable Long idItem, @RequestBody @Valid Item item, BindingResult result){
         log.info("atualizar item com id" + idItem);
         var itemEncontrado = repository.findById(idItem);
 

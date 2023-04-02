@@ -1,11 +1,14 @@
 package br.com.fiap.marys_pizza.models;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Login {
 
+    @NotEmpty
     private String usuario;
+    @NotEmpty
     private String senha;
 
     public String getUsuario() {

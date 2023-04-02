@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.marys_pizza.models.Cliente;
 import br.com.fiap.marys_pizza.repositories.ClienteRepository;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> create(@RequestBody @Valid Cliente cliente, BindingResult result) {
         log.info("criar cliente" + cliente);
         repository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
@@ -61,7 +63,7 @@ public class ClienteController {
     }
 
     @PutMapping("{idCliente}")
-    public ResponseEntity<Cliente> update(@PathVariable Long idCliente, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> update(@PathVariable Long idCliente, @RequestBody @Valid Cliente cliente, BindingResult result) {
         log.info("atualizar cliente com id" + idCliente);
         var clienteEncontrado = repository.findById(idCliente);
 
