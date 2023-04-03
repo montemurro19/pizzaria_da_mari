@@ -4,51 +4,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAvaliacao;
-    @NotBlank @Size(min = 5)
+
+    @NotBlank
+    @Size(min = 5)
     private String comentario;
-    @Min(0) @Max(10)
+
+    @NotBlank 
+    @Size(min = 0, max = 10)
     private Long nota;
-
-    public Long getIdAvaliacao() {
-        return idAvaliacao;
-    }
-    public void setIdAvaliacao(Long idAvaliacao) {
-        this.idAvaliacao = idAvaliacao;
-    }
-    public String getComentario() {
-        return comentario;
-    }
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-    public Long getNota() {
-        return nota;
-    }
-    public void setNota(Long nota) {
-        this.nota = nota;
-    }
-    
-    protected Avaliacao() {
-    }
-
-    public Avaliacao(String comentario, Long nota) {
-        this.comentario = comentario;
-        this.nota = nota;
-    }
-
-    @Override
-    public String toString() {
-        return "Avaliacao [comentario=" + comentario + ", nota=" + nota + "]";
-    }
-    
 }
