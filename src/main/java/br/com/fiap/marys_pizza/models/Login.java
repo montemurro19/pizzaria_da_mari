@@ -1,9 +1,9 @@
 package br.com.fiap.marys_pizza.models;
 
-import jakarta.persistence.Entity;
+import org.springframework.stereotype.Controller;
 import jakarta.validation.constraints.NotEmpty;
 
-@Entity
+@Controller
 public class Login {
 
     @NotEmpty
