@@ -7,8 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -26,4 +27,10 @@ public class Avaliacao {
     @NotBlank 
     @Size(min = 0, max = 10)
     private Long nota;
+
+    @OneToOne
+    private Pedido pedido;
+
+    @OneToOne
+    private Historico historico;
 }

@@ -1,11 +1,15 @@
 package br.com.fiap.marys_pizza.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.*;
 
 import lombok.*;
@@ -48,4 +52,16 @@ public class Cliente {
     @NotNull 
     @Past
     private LocalDate dataNascimento;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pagamento> pagamentos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Endereco> enderecos = new ArrayList<>();
+
+    @OneToOne
+    private Historico historico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 }

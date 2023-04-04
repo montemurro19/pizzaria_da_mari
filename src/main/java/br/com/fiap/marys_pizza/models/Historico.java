@@ -4,10 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -18,12 +20,15 @@ public class Historico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHistorico;
 
-    @NotBlank
-    private String avaliacao;
-
     @Min(0)
     private double valorTotal;
 
-    @NotBlank
-    private String tipoPagamento;
+    @ManyToOne
+    private Pagamento pagamento;
+
+    @OneToOne
+    private Cliente cliente;
+
+    @OneToOne
+    private Avaliacao avaliacao;
 }
