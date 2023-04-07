@@ -1,17 +1,18 @@
 package br.com.fiap.marys_pizza.models;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-
-import java.math.BigDecimal;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -34,6 +35,6 @@ public class Item {
     @NotEmpty
     private String tipo;
     
-    @ManyToOne
+    @ManyToMany
     private Pedido pedido;
 }
