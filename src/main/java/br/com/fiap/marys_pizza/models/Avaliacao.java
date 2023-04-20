@@ -1,5 +1,12 @@
 package br.com.fiap.marys_pizza.models;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.EntityModel;
+
+import br.com.fiap.marys_pizza.controllers.AvaliacaoController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +15,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +42,12 @@ public class Avaliacao {
 
     @OneToOne
     private Historico historico;
+
+    public EntityModel<Avaliacao> toModel(){
+        return EntityModel.of(
+            this,
+            linkTo(methodOn(AvaliacaoController.class).show(idAvaliacao)).withSelfRel(),
+            linkTo(methodOn(AvaliacaoController.class).index(Pageable.unpaged(), null)).withRel("listAll")
+        );
+    }
 }

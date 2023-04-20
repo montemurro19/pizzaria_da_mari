@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,30 +33,40 @@ public class ItemController {
     Logger log = LoggerFactory.getLogger(ItemController.class);
 
     @Autowired
-    ItemRepository repository;
+    ItemRepository itemRepository;
+
+    @Autowired
+    PagedResourcesAssembler<Object> assembler;
 
     @GetMapping
-    public Page<Item> index(@PageableDefault(size = 5) Pageable pageable){
-        return repository.findAll(pageable);
+    public PagedModel<EntityModel<Object>> index(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false) String busca){
+        Page<Item> page = (busca == null) ?
+            itemRepository.findAll(pageable) : 
+            itemRepository.findByDescricaoContaining(busca, pageable);
+
+        return assembler.toModel(page.map(Item::toModel));
     }
     
     @GetMapping("{idItem}")
-    public ResponseEntity<Item> show(@PathVariable Long idItem){
+    public EntityModel<Item> show(@PathVariable Long idItem){
         log.info("buscar item com id" + idItem);
-        return ResponseEntity.ok(getItem(idItem));
+        var item = itemRepository.findById(idItem).orElseThrow(
+            () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "item não existente")
+        );
+        return item.toModel();
     }
 
     @PostMapping
     public ResponseEntity<Item> create(@RequestBody @Valid Item item){
         log.info("cadastrar item" + item);
-        repository.save(item);
+        itemRepository.save(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
 
     @DeleteMapping("{idItem}")
     public ResponseEntity<Item> destroy(@PathVariable Long idItem){
         log.info("apagar item com id" + idItem);
-        repository.delete(getItem(idItem));
+        itemRepository.delete(getItem(idItem));
         return ResponseEntity.noContent().build();
     }
 
@@ -60,12 +74,13 @@ public class ItemController {
     public ResponseEntity<Item> update(@PathVariable Long idItem, @RequestBody @Valid Item item){
         log.info("atualizar item com id" + idItem);
         getItem(idItem);
-        repository.save(item);
+        item.setIdItem(idItem);
+        itemRepository.save(item);
         return ResponseEntity.ok(item);
     }
 
     private Item getItem(Long id) {
-        return repository.findById(id).orElseThrow(
+        return itemRepository.findById(id).orElseThrow(
             () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "item não existente")
         );  
     }
