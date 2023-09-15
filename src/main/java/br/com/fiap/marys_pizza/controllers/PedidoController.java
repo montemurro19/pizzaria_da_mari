@@ -42,7 +42,7 @@ public class PedidoController {
     public PagedModel<EntityModel<Object>> index(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false) String busca){
         Page<Pedido> page = (busca == null) ?
             pedidoRepository.findAll(pageable) :
-            pedidoRepository.findByDescricaoContaining(busca, pageable);
+            pedidoRepository.findByIdPedidoContaining(busca, pageable);
 
         return assembler.toModel(page.map(Pedido::toModel));
     }

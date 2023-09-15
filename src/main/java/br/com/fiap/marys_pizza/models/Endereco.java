@@ -32,7 +32,6 @@ public class Endereco {
     private String bairro;
 
     @NotBlank 
-    @Pattern(regexp = "\\d{5}-\\d{3}", message = "O CEP deve estar no formato 99999-999")    
     private String cep;
 
     @NotBlank

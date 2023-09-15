@@ -39,10 +39,10 @@ public class ItemController {
     PagedResourcesAssembler<Object> assembler;
 
     @GetMapping
-    public PagedModel<EntityModel<Object>> index(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false) String busca){
+    public PagedModel<EntityModel<Object>> index(@PageableDefault(size = 8) Pageable pageable, @RequestParam(required = false) String busca){
         Page<Item> page = (busca == null) ?
             itemRepository.findAll(pageable) : 
-            itemRepository.findByDescricaoContaining(busca, pageable);
+            itemRepository.findByIdItemContaining(busca, pageable);
 
         return assembler.toModel(page.map(Item::toModel));
     }

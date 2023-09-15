@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {   
     
-    Page<Pedido> findByDescricaoContaining(String busca, Pageable pageable);
+    Page<Pedido> findByIdPedidoContaining(String description, Pageable pageable);
 
 }

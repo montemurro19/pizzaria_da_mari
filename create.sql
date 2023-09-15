@@ -1,0 +1,7 @@
+create table cliente (data_nascimento date not null, id_cliente number(19,0) generated as identity, cpf varchar2(255 char), email varchar2(255 char), nome varchar2(255 char), senha varchar2(255 char), telefone varchar2(255 char), usuario varchar2(255 char), primary key (id_cliente));
+create table endereco (cliente_id_cliente number(19,0), id_endereco number(19,0) generated as identity, bairro varchar2(255 char), cep varchar2(255 char), cidade varchar2(255 char), logradouro varchar2(255 char), numero varchar2(255 char), referencia varchar2(255 char), titulo varchar2(255 char), primary key (id_endereco));
+create table item (preco number(38,2) check (preco>=0), id_item number(19,0) generated as identity, pedido_id_pedido number(19,0), descricao varchar2(255 char), tipo varchar2(255 char), titulo varchar2(255 char), primary key (id_item));
+create table pedido (valor_total number(38,2) check (valor_total>=0), cliente_id_cliente number(19,0), horario_pedido timestamp(6) not null, id_pedido number(19,0) generated as identity, avaliacao raw(255), observacao varchar2(255 char), pagamento varchar2(255 char), status varchar2(255 char), primary key (id_pedido));
+alter table endereco add constraint FKs2svlafhyjfcq89h1vrqw55sv foreign key (cliente_id_cliente) references cliente;
+alter table item add constraint FK39ov8gr04lgnlskpmknro2npo foreign key (pedido_id_pedido) references pedido;
+alter table pedido add constraint FKr96bx33q9bmma0u00y1nmd8xc foreign key (cliente_id_cliente) references cliente;

@@ -35,10 +35,10 @@ import br.com.fiap.marys_pizza.repositories.ItemRepository;
 
             itemRepository.saveAll(List.of(pizzaCalabresa, pizzaCarne, pizzaPortuguesa, pizzaAtum, cocacola1L, cocacola2L, guarana1L, guarana2L));
             
-            Cliente c1 = new Cliente(1L,"Vitorio Graton","123.123.123-23","vitorio@graton.com.br","(11) 94970-0003","S3nh@c0mpl3x@","Usuario123_xyz",LocalDate.of(2004, Month.FEBRUARY, 4),null,null,null,null);
-            Cliente c2 = new Cliente(2L,"Matheus Montemurro","123.143.123-23","montemurro.matheus@gmail.com","(11) 99877-6673","S3nh@c0mpl3x@","Usuario1_xyz",LocalDate.of(1998, Month.SEPTEMBER, 19),null,null,null,null);
-            Cliente c3 = new Cliente(3L, "Neymar Jr","100.123.897-10","neymar.jr@gmail.com","(11)91010-6810","C4kh@b1po10j@","Neymarjr_10",LocalDate.of(1992, Month.FEBRUARY,5), null, null, null, null);
-            Cliente c4 = new Cliente(4L,"Lula Inacio","133.133.133-13","luis.inacio@gmail.com","(13)91313-1313","L3pt@ptpt13l@","LulaInacio_13",LocalDate.of(1945,Month.OCTOBER,27), null, null, null, null);
+            Cliente c1 = new Cliente(1L,"Vitorio Graton","123.123.123-23","vitorio@graton.com.br","(11)94970-0003","S3nh@c0mpl3x@","Usuario123_xyz",LocalDate.of(2004, Month.FEBRUARY, 4),null,null);
+            Cliente c2 = new Cliente(2L,"Matheus Montemurro","123.143.123-23","montemurro.matheus@gmail.com","(11)99877-6673","S3nh@c0mpl3x@","Usuario1_xyz",LocalDate.of(1998, Month.SEPTEMBER, 19),null,null);
+            Cliente c3 = new Cliente(3L, "Neymar Jr","100.123.897-10","neymar.jr@gmail.com","(11)91010-6810","C4kh@b1po10j@","Neymarjr_10",LocalDate.of(1992, Month.FEBRUARY,5), null, null);
+            Cliente c4 = new Cliente(4L,"Lula Inacio","133.133.133-13","luis.inacio@gmail.com","(13)91313-1313","L3pt@ptpt13l@","LulaInacio_13",LocalDate.of(1945,Month.OCTOBER,27), null, null);
 
             clienteRepository.saveAll(List.of(c1, c2, c3, c4));
         }
