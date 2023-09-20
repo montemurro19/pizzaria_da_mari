@@ -10,19 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-//import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-//import java.util.ArrayList;
-//import java.util.List;
-import java.util.List;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
@@ -55,9 +48,6 @@ public class Pedido {
     private String pagamento;
 
     private Number avaliacao;
-
-//    @OneToMany(mappedBy = "pedido")
-//    private List<Item> items = new ArrayList<>();
 
     @ManyToOne
     private Cliente cliente;
