@@ -71,7 +71,7 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
 
-    @GetMapping("{idCliente}")
+    @GetMapping("/{idCliente}")
     private Cliente getCliente(Long id) {
         return repository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "cliente não existente"));
