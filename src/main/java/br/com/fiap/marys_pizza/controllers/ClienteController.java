@@ -55,14 +55,14 @@ public class ClienteController {
         return ResponseEntity.ok(token);
     }
 
-    @DeleteMapping("{idCliente}")
+    @DeleteMapping("/{idCliente}")
     public ResponseEntity<Cliente> destroy(@PathVariable Long idCliente) {
         log.info("apagar cliente com id" + idCliente);
         repository.delete(getCliente(idCliente));
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{idCliente}")
+    @PutMapping("/{idCliente}")
     public ResponseEntity<Cliente> update(@PathVariable Long idCliente, @RequestBody @Valid Cliente cliente) {
         log.info("atualizar cliente com id" + idCliente);
         getCliente(idCliente);
@@ -72,8 +72,13 @@ public class ClienteController {
     }
 
     @GetMapping("/{idCliente}")
-    private Cliente getCliente(Long id) {
-        return repository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "cliente não existente"));
+    public ResponseEntity<Cliente> show(@PathVariable Long idCliente) {
+        log.info("buscar conta com id " + idCliente);
+        return ResponseEntity.ok(getCliente(idCliente));
+    }
+
+    private Cliente getCliente(Long idCliente) {
+        return repository.findById(idCliente).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "conta não encontrada"));
     }
 }
